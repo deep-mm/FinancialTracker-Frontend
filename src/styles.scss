@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+/* Overrides to bootstrap */
+$wild-sand: #F4F4F4;
+$brand: #002D72;
+
+$theme-colors: (
+  "brand": $brand,
+  "wild-sand": $wild-sand
+);
+
+$font-family-base: 'Roboto', sans-serif;
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import "~bootstrap/scss/bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* Specific styles */
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+body, .sticky-footer-wrapper {
+  min-height: 100vh;
+}
+
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 800px; } }
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px; } }
+
+.bg-custom {
+  background-image: linear-gradient(to right, #024C8F, #015FC3);
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+}
+
+.mat-dialog-container {
+  height: initial !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
