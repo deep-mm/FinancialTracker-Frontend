@@ -1,1 +1,27 @@
-<p>investment works! {{ investmentTypes[0].investmentTypeName }}</p>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+<table class="table">
+    <thead class="thead-light">
+      <tr class="header" style="background-color: #ffffff;">
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Member</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let investment of investments" class="table-row-item">
+        <td>{{investment.investmentId}}</td>
+        <td>{{investment.investmentName}}</td>
+        <td>{{investment.investmentType.investmentTypeName}}</td>
+        <td>{{investment.investmentDate | date: 'dd/MM/yyyy'}}</td>
+        <td>{{investment.investmentAmount}}</td>
+        <td>{{investment.member.memberName}}</td>
+        <td>{{investment.notes}}</td>
+        <td>{{investment.investmentStatus.investmentStatusName}}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
+import { FooterComponent } from './footer/footer.component';
+import { MaterialModule } from './material/material.module';
+import { NgxLoadingModule } from 'ngx-loading';
 
 export const protectedResourceMap: any =
   [
@@ -25,7 +28,8 @@ export const protectedResourceMap: any =
     AppComponent,
     InvestmentComponent,
     InvestmentDetailsComponent,
-    AddInvestmentComponent
+    AddInvestmentComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,8 @@ export const protectedResourceMap: any =
       protectedResourceMap: protectedResourceMap,
       redirectUri: environment.redirectUrl
     }),
+    MaterialModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [
     HttpClient,

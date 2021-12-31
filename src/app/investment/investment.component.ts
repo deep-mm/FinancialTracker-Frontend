@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Investment } from '../models/Investment';
 import { InvestmentType } from '../models/InvestmentType';
 import { ApiService } from '../services/api.service';
 
@@ -9,15 +10,19 @@ import { ApiService } from '../services/api.service';
 })
 export class InvestmentComponent implements OnInit {
 
-  investmentTypes: InvestmentType[] = [];
+  investments: Investment[] = [];
+  loading: boolean = false;
 
   constructor(public _apiService: ApiService) { }
 
   ngOnInit(): void {
-    this._apiService.getInvestmentTypes().subscribe((investmentTypes: InvestmentType[]) => {
-      this.investmentTypes = investmentTypes;
+    this.loading = true;
+    this._apiService.getAllInvestments().subscribe((investments: Investment[]) => {
+      this.investments = investments;
+      this.loading = false;
     },
       error => {
+        this.loading = false;
         console.error('Error occurred while retrieving list of investment types from the database. Error: ' + error);
       });
   }
