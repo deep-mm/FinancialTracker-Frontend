@@ -1,1 +1,54 @@
-<p>add-investment works!</p>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+<div style="padding: 80px;">
+    <form #investmentDetailsForm='ngForm'>
+        <div>
+            <mat-label>Investment Name *</mat-label><br>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" required #InvestmentName="ngModel"
+                    [(ngModel)]="newInvestment.investmentName" name="InvestmentName" maxlength="50"
+                    [class.is-invalid]="InvestmentName.invalid && (InvestmentName.touched || InvestmentName.dirty)">
+                <mat-error *ngIf="InvestmentName.invalid && (InvestmentName.touched || InvestmentName.dirty)">
+                    Enter a valid Investment Name
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <mat-label>Investment Date *</mat-label><br>
+            <mat-form-field appearance="outline">
+                <input matInput #InvestmentDate="ngModel"
+                    [(ngModel)]="newInvestment.investmentDate" name="InvestmentDate" required type="date"
+                    [class.is-invalid]="InvestmentDate.invalid && (InvestmentDate.touched || InvestmentDate.dirty)">
+                <mat-error *ngIf="InvestmentDate.invalid && (InvestmentDate.touched || InvestmentDate.dirty)">
+                    Enter a valid Date
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <mat-label>Investment Amount *</mat-label><br>
+            <mat-form-field appearance="outline">
+                <input matInput required #InvestmentAmount="ngModel"
+                    [(ngModel)]="newInvestment.investmentAmount" name="InvestmentAmount" type="number" min="0"
+                    [class.is-invalid]="InvestmentAmount.invalid && (InvestmentAmount.touched || InvestmentAmount.dirty)">
+                <mat-error *ngIf="InvestmentAmount.invalid && (InvestmentAmount.touched || InvestmentAmount.dirty)">
+                    Enter a valid Investment Amount
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <mat-label>Notes*</mat-label><br>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" required #Notes="ngModel"
+                    [(ngModel)]="newInvestment.notes" name="Notes" maxlength="1000"
+                    [class.is-invalid]="Notes.invalid && (Notes.touched || Notes.dirty)">
+                <mat-error *ngIf="Notes.invalid && (Notes.touched || Notes.dirty)">
+                    Enter a valid Investment Notes
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <button (click)="submitForm()" [disabled]="investmentDetailsForm.form.invalid" style="margin-top: 50px;">Submit</button>
+    </form>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Investment } from '../models/Investment';
 import { InvestmentType } from '../models/InvestmentType';
 import { ApiService } from '../services/api.service';
@@ -13,7 +14,7 @@ export class InvestmentComponent implements OnInit {
   investments: Investment[] = [];
   loading: boolean = false;
 
-  constructor(public _apiService: ApiService) { }
+  constructor(public _apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -25,6 +26,10 @@ export class InvestmentComponent implements OnInit {
         this.loading = false;
         console.error('Error occurred while retrieving list of investment types from the database. Error: ' + error);
       });
+  }
+
+  AddParticipant(){
+    this.router.navigate(['investment/new']);
   }
 
 }

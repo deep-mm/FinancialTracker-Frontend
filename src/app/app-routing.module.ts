@@ -8,8 +8,8 @@ import { MsalGuard } from '@azure/msal-angular';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: InvestmentComponent ,canActivate: [MsalGuard]},
-  { path: 'investment/:investmentId', component: InvestmentDetailsComponent ,canActivate: [MsalGuard]},
   { path: 'investment/new', component: AddInvestmentComponent ,canActivate: [MsalGuard]},
+  { path: 'investment/:investmentId', component: InvestmentDetailsComponent ,canActivate: [MsalGuard]},
   { path: '**', redirectTo: '/home' }
 ];
 
