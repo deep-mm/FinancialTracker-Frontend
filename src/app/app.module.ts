@@ -6,11 +6,19 @@ import { AppComponent } from './app.component';
 import { InvestmentComponent } from './investment/investment.component';
 import { InvestmentDetailsComponent } from './investment-details/investment-details.component';
 import { AddInvestmentComponent } from './add-investment/add-investment.component';
-import { XhrInterceptor } from './utils/xhrInterceptor';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
+import { AuthService } from './services/auth.service';
+import { environment } from 'src/environments/environment';
+
+export const protectedResourceMap: any =
+  [
+    [environment.apiBaseUrl, environment.scopeUri
+    ]
+  ];
 
 @NgModule({
   declarations: [
@@ -26,10 +34,21 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FontAwesomeModule,
     FormsModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MsalModule.forRoot({
+      clientID: environment.uiClienId,
+      authority: 'https://login.microsoftonline.com/' + environment.tenantId,
+      cacheLocation: 'localStorage',
+      protectedResourceMap: protectedResourceMap,
+      redirectUri: environment.redirectUrl
+    }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    HttpClient,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true
+    },
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
   ],
   bootstrap: [AppComponent]

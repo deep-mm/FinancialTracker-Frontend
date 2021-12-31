@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@azure/msal-angular": "^0.1.4",
+    "@azure/msal-browser": "^2.20.0",
     "@fortawesome/angular-fontawesome": "^0.9.0",
     "@fortawesome/fontawesome-common-types": "^0.2.36",
     "@fortawesome/fontawesome-free": "^5.15.4",
@@ -37,6 +39,7 @@
     "ngx-moment": "^5.0.0",
     "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.6.0",
+    "rxjs-compat": "^6.6.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
