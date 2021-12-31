@@ -1,0 +1,12 @@
+{
+    "variables": [
+        {
+            "name": "repoName",
+            "value": "FinanceTracker-Frontend"
+        },
+        {
+            "name": "REGISTRY",
+            "value": "ghcr.io"
+        }
+    ]
+}
