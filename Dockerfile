@@ -11,4 +11,4 @@ RUN npm run build
 # Stage 2
 FROM nginx:1.17.1-alpine
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY --from=build-step /app/dist/rcdweb /usr/share/nginx/html
+COPY --from=build-step /app/dist/financial-tracker /usr/share/nginx/html
